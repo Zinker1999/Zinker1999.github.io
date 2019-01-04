@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Programming Language," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Zinker's hikari" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="英语渣，QAQ。 长期更新ing。">
+<meta name="keywords" content="Programming Language">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift4 手册（非官方翻译）">
+<meta property="og:url" content="http://yoursite.com/Swift4-学习手册/index.html">
+<meta property="og:site_name" content="Zinker&#39;s hikari">
+<meta property="og:description" content="英语渣，QAQ。 长期更新ing。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-20T16:16:38.996Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift4 手册（非官方翻译）">
+<meta name="twitter:description" content="英语渣，QAQ。 长期更新ing。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/Swift4-学习手册/"/>
+
+
+
+
+
+  <title>Swift4 手册（非官方翻译） | Zinker's hikari</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zinker's hikari</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一人である</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/Swift4-学习手册/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zinker">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zinker's hikari">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift4 手册（非官方翻译）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-25T10:13:24+08:00">
+                2018-10-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>英语渣，QAQ。</p>
+<p>长期更新ing。</p>
+<a id="more"></a>
+<h1 id="Swift编程语言-–-Swift4-2"><a href="#Swift编程语言-–-Swift4-2" class="headerlink" title="Swift编程语言 – Swift4.2"></a>Swift编程语言 – Swift4.2</h1><h2 id="欢迎来到Swift"><a href="#欢迎来到Swift" class="headerlink" title="欢迎来到Swift"></a>欢迎来到Swift</h2><h3 id="关于Swift"><a href="#关于Swift" class="headerlink" title="关于Swift"></a>关于Swift</h3><p>​    Swift是可用来进行软件开发的一款非常好的语言，无论是面向手机、电脑、服务器或者其他可以运行代码的设备。它是一款安全、快速以及可交互的一款编程语言，它集合了来自广大Apple开发者的充满智慧的最优的现代语言思想以及来自这个开源社区的各式各样的贡献。Swift的编译器进行了对性能的优化，而语言本身又做了面向开发的优化。</p>
+<p>​    Swift对于编程新手来说十分友好。这是一种工业高质量的编程语言，它和脚本语言一样生动和让人着迷。在playground运行Swift代码让你可以测试你的代码并立刻得到结果，而不需要建立并运行一个新的APP。</p>
+<p>​    Swift通过引入一些现代的编程模式，定义减少了大量的常见的编程错误：</p>
+<ul>
+<li>在使用之前变量均被初始化。</li>
+<li>数组指数会进行越界检查。</li>
+<li>整型数会判断是否溢出。</li>
+<li>选配类型(Optional)保证了 nil 的值被准确地处理。</li>
+<li>内存自动分配。</li>
+<li>错误处理允许程序从不可预知的错误中进行受控制地恢复。</li>
+</ul>
+<p>Swift代码为了实现现代硬件的最大化应用进行编译和优化。语法和基础的库被设计基于一个基本原则：用明确的方式编写代码也应该有最好的表现。速度和安全性的组合使Swift成为了一个无论是对于“Hello,World“，还是对于整个操作系统的杰出选择。</p>
+<p>​    Swift结合了强大的数据类型推断和利用现代化和轻量级的特征匹配，允许复杂的想法可以以一个明确且准确的方式表达出来。因此，Swift代码不仅易于编写，而且易于阅读和保存。</p>
+<p>​    Swift的开发已经进行了多年，同时它持续的开发出新的特征和能力。我们对Swift的未来充满期望。我们已经迫不及待地希望你去利用它。</p>
+<h3 id="版本兼容"><a href="#版本兼容" class="headerlink" title="版本兼容"></a>版本兼容</h3><p>​    这本描述了Swift 4.2的内容，Swift4.2是在Xcode10.0中所默认的版本。当然，你可以使用Xcode去编写Swift4 和 Swift3 的程序。</p>
+<p>​    当使用Swift4.2的编译器去编译Swift3的代码，它会默认识别代码的语言版本为Swift3.4。因此，你可以使用可选的编译模块就像是</p>
+<p><code>#if swift(&gt;=3.4)</code></p>
+<p>​    来写适配不同Swift编译器版本的代码。</p>
+<p>​    当你使用Xcode9.2去编写Swift3代码，大多数新的Swift4的功能都是可以使用的。但是有一些功能只能应用在Swift4的代码中：</p>
+<ul>
+<li><p>Substring的操作返回值是Substring类型而非是String类型。</p>
+</li>
+<li><p>@objc 标志被隐性的标注在了更少的位置上。</p>
+</li>
+<li><p>在相同文件中对一个类型的扩展引申到这个类的私有成员上。</p>
+<p>使用Swift4编写的target可以基于另一个用Swift3编写的target，反之亦然。这意味着，如果你有一个大型的工程，而这个工程被分成了多种的框架，你可以一次性地移植你的Swift3代码框架到Swift4代码框架。</p>
+</li>
+</ul>
+<h3 id="Swift概览"><a href="#Swift概览" class="headerlink" title="Swift概览"></a>Swift概览</h3><p>  传统上讲一个新的语言的第一个程序往往是在屏幕上输出”Hello，World!”。在Swift中，这个程序可以通过简单的一行来实现。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello, World!"</span>)</span><br><span class="line"><span class="comment">// Prints "Hello, World!"</span></span><br></pre></td></tr></table></figure>
+<p>​    如果你可以使用C语言或者Objective-C编写程序，你可能会对这个语法很熟悉。在Swift中，这样的一行代码就是一个完整的程序。你不需要为了完成类似输入/输出或者是处理字符串这样的功能去引入一个额外的库。写在全局范围内的代码被用作视为程序的入口点，因此你不需要使用main()函数。你也不需要去在每一个声明的末尾写分号。</p>
+<p>​    这个概览可以通过给你展示如何去完成多种类的编程任务，使你能够获得足够多的信息去利用Swift开始编写代码。</p>
+<h4 id="简单数值"><a href="#简单数值" class="headerlink" title="简单数值"></a>简单数值</h4><p>​    使用 let 去定义一个定值，或者是使用 var 去定义一个变量。定值在编译过程中是不需要被确认的，但是你必须确切地将其声明为一个值。这意味着，你可以在只定义了一次的情况下在不同地方使用这个定值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myVariable = <span class="number">42</span></span><br><span class="line">myVariable = <span class="number">50</span></span><br><span class="line"><span class="keyword">let</span> myConstant = <span class="number">42</span></span><br></pre></td></tr></table></figure>
+<p>​    一个定值或者变量必须有一个和你所声明类型相同的类型的值。然而，你不需要将这种类型明确的写出来。当你创建一个新定值或者变量的时候，编译器会自动识别它的类型。在下面的例子中，编译器就识别了myVariable为一个整型数，因为它的初值为一个整型数。</p>
+<p>​    如果初值并没有给定足够的信息（或者是没有初值的情况下），可以在变量之后进行类型的确定，使用一个冒号分开。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> implicitInteger = <span class="number">70</span></span><br><span class="line"><span class="keyword">let</span> implicitDouble = <span class="number">70.0</span></span><br><span class="line"><span class="keyword">let</span> explicitDouble: <span class="type">Double</span> = <span class="number">70</span></span><br></pre></td></tr></table></figure>
+<p>实验：创建一个定值，要求定义为确定的float类型，并且值等于4。</p>
+<p>​    所有的值不能被隐性转换为另外的数据类型。如果你想要将一个值转化为另一个类型，那么就进行明确的转换，示例如下。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> label = <span class="string">"The width is "</span></span><br><span class="line"><span class="keyword">let</span> width = <span class="number">94</span></span><br><span class="line"><span class="keyword">let</span> widthLabel = label + <span class="type">String</span>(width)</span><br></pre></td></tr></table></figure>
+<p>实验：试着将上述代码最后一行的String去掉，看看会发生什么？</p>
+<p>​    对于字符串来说，有一种更简单的方式去使其包含其他的值：将这个值的名称写在括号中，然后在括号之前写一个反斜线”\”，比如说：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> apples = <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> oranges = <span class="number">5</span></span><br><span class="line"><span class="keyword">let</span> appleSummary = <span class="string">"I have <span class="subst">\(apples)</span> apples."</span></span><br><span class="line"><span class="keyword">let</span> fruitSummary = <span class="string">"I have <span class="subst">\(apples + oranges)</span> pieces of fruit."</span></span><br></pre></td></tr></table></figure>
+<p>实验：使用这种方式在字符串中进行一次浮点数运算，然后让这句话包含某个人的名字作为一种问候。</p>
+<p>​    对那些需要很多行的字符串，使用三个双引号(“””)这个符号。在每一行的开头处的缩进可以被移除，只要在最后的时候满足缩进即可。比如说：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> quotation = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">Even though there's whitespace to the left,</span></span><br><span class="line"><span class="string">the actual lines aren't indented.</span></span><br><span class="line"><span class="string">Except for this line.</span></span><br><span class="line"><span class="string">Double quotes ("</span>) can appear without being escaped.</span><br><span class="line"></span><br><span class="line"><span class="type">I</span> still have \(apples + oranges) pieces of fruit.</span><br><span class="line">    <span class="string">""</span><span class="string">"</span></span><br></pre></td></tr></table></figure>
+<p>​    可以使用中括号([])去创建数组和字典，然后通过在中括号中写数组下标或者字典的键值访问数组或字典。在最后一个元素末尾允许加”,”。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shoppingList = [<span class="string">"catfish"</span>, <span class="string">"water"</span>, <span class="string">"tulips"</span>]</span><br><span class="line">shoppingList[<span class="number">1</span>] = <span class="string">"bottle of water"</span></span><br><span class="line"><span class="keyword">var</span> occupations = [</span><br><span class="line">    <span class="string">"Malcolm"</span>: <span class="string">"Captain"</span>,</span><br><span class="line">    <span class="string">"Kaylee"</span>: <span class="string">"Mechanic"</span>,</span><br><span class="line">]</span><br><span class="line">occupations[<span class="string">"Jayne"</span>] = <span class="string">"Public Relations"</span></span><br></pre></td></tr></table></figure>
+<p>​    数组在增加新元素的时候可以自动增长。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shoppingList.append(<span class="string">"blue paint"</span>)</span><br><span class="line"><span class="built_in">print</span>(shoppingList)</span><br></pre></td></tr></table></figure>
+<p>​    创建一个空的字典或者数组，可以使用初始化的语法。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emptyArray = [<span class="type">String</span>]()</span><br><span class="line"><span class="keyword">let</span> emptyDictionary = [<span class="type">String</span>: <span class="type">Float</span>]()</span><br></pre></td></tr></table></figure>
+<p>​    如果你所创建的字典或者数组的数据类型可以被识别出来，那么你可以将空的数组写作[]，新的字典写作[:]，举个例子，当你想要为一个变量赋一个新的值或者想要对一个函数传递一个声明的时候，就可以这样做了。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shoppingList = []</span><br><span class="line">occupations = [:]</span><br></pre></td></tr></table></figure>
+<h4 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h4><p>​    使用if或者switch语句去创建条件语句，以及使用for-in，while，以及repeat-while去创建循环语句。在条件或者循环控制变量前的圆括号可以写也可以省略。但是大括号是必须写的。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> individualScores =[<span class="number">75</span>, <span class="number">43</span>, <span class="number">103</span>, <span class="number">87</span>, <span class="number">12</span>]</span><br><span class="line"><span class="keyword">var</span> teamScore = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> score <span class="keyword">in</span> individualScores &#123;</span><br><span class="line">    <span class="keyword">if</span> score &gt; <span class="number">50</span>&#123;</span><br><span class="line">        teamScore += <span class="number">3</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        teamScore += <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(teamScore)</span><br></pre></td></tr></table></figure>
+<p>​    在一个if声明中，条件变量必须被定义为bool类型，这就意味着类似 <code>if score{…}</code>这样的代码格式是错误的，不是一个和0的隐式比较。</p>
+<p>​    你可以同时使用if和let语句，去处理那些可能会丢失的值。这些值被认为是可选的。一个可选值或者包含一个值，或者利用<code>nil</code>代表这个值丢失了。当在一个值的数据类型后加上”?”，这代表着这个值是可选值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalString: <span class="type">String</span>? = <span class="string">"Hello"</span></span><br><span class="line"><span class="built_in">print</span>(optionalString == <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">//Prints "false"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> optionalName:<span class="type">String</span>? = <span class="string">"John Appleseed"</span></span><br><span class="line"><span class="keyword">var</span> greeting = <span class="string">"Hello!"</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> name = optionalName&#123;</span><br><span class="line">    greeting = <span class="string">"Hello, <span class="subst">\(name)</span>"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实验：如果把<code>optionalName</code>的值赋值为<code>nil</code>,你会得到什么样的问候语句？加入一个<code>else</code>语句，当<code>optionalName</code>为<code>nil</code>的时候，来设定一个不同的问候语。</p>
+<p>​    如果可选值为<code>nil</code>的时候，条件变量被设定为false，同时大括号中的代码被跳过。否则，可选值就会被赋值给let后的变量，这使得可选值可以被应用在后续的代码块中。</p>
+<p>​    处理可选值的另外一种方式是使用”??”操作符去提供一个在可选值为空的情况下的，可以使用的值。如果可选值丢失的情况下，那么这个default值就可以代替原来的可选值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nickName: <span class="type">String</span>? = <span class="literal">nil</span></span><br><span class="line"><span class="keyword">let</span> fullName: <span class="type">String</span> = <span class="string">"John Appleseed"</span></span><br><span class="line"><span class="keyword">let</span> informalGreeting = <span class="string">"Hi <span class="subst">\(nickName ?? fullName)</span>"</span></span><br></pre></td></tr></table></figure>
+<p>​    Switch支持多个种类的数据和多种的比较运算符，他们不被限制为整数以及相等的测试。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> vegetable = <span class="string">"red pepper"</span></span><br><span class="line"><span class="keyword">switch</span> vegetable&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"celery"</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">"Add some raisins and make ants on a log"</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"cucumber"</span>, <span class="string">"watercress"</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">"That would make a good tea sandwich."</span>)</span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">let</span> x <span class="keyword">where</span> x.hasSuffix(<span class="string">"pepper"</span>):</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">"Is it a spicy <span class="subst">\(x)</span>?"</span>)</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">    	<span class="built_in">print</span>(<span class="string">"Everything tastes good in soup."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//Prints "Is it a spicy red pepper?"</span></span><br></pre></td></tr></table></figure>
+<p>实验：试着去删除掉default部分，看看会发生什么错误？</p>
+<p>​    注意<code>let</code>可以被用于去声明一个等同于其他定值的另一个值。</p>
+<p>​    在执行完switch对应case的代码之后，程序从switch的代码中自动退出。执行过程不会自动进入另一个case语句中，因此不需要显性地写出<code>break</code>来表明case语句的结束。</p>
+<p>​    你可以使用for-in结构，在提供一系列变量名应用到对应的键值对的情况下，对字典内容进行重写。字典是一种无序的集合，因此他们的键值对可以用一个随意的顺序去重写。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> interestingNumbers = [</span><br><span class="line">    <span class="string">"Prime"</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">13</span>]</span><br><span class="line">    <span class="string">"Fibonacci"</span>: [<span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">8</span>]</span><br><span class="line">    <span class="string">"Square"</span>: [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25</span>]</span><br><span class="line">]</span><br><span class="line"><span class="keyword">var</span> largest = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (kind, numbers) <span class="keyword">in</span> interestingNumbers &#123;</span><br><span class="line">    <span class="keyword">for</span> number <span class="keyword">in</span> numbers&#123;</span><br><span class="line">        <span class="keyword">if</span> number &gt; largest&#123;</span><br><span class="line">            largest = number</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(largest)</span><br><span class="line"><span class="comment">// Prints "25"</span></span><br></pre></td></tr></table></figure>
+<p>实验：加入另外的变量，去判定哪一个种类的数字最大以及最大的数字是什么。</p>
+<p>​    使用while语句去重复一个代码块，知道条件发生改变。循环的条件可以放在代码块末尾，保证这个循环至少运行一次。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">2</span></span><br><span class="line"><span class="keyword">while</span> n &lt; <span class="number">100</span>&#123;</span><br><span class="line">    n *= <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(n)</span><br><span class="line"><span class="comment">// Prints "128"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> m = <span class="number">2</span></span><br><span class="line"><span class="keyword">repeat</span>&#123;</span><br><span class="line">    m *= <span class="number">2</span></span><br><span class="line">&#125; <span class="keyword">while</span> m &lt; <span class="number">100</span></span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"><span class="comment">// Prints "128"</span></span><br></pre></td></tr></table></figure>
+<p>​    你可以利用”..&lt;”这一符号来确定循环中参数的取值范围。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> total = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;<span class="number">4</span>&#123;</span><br><span class="line">    total += i</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(total)</span><br><span class="line"><span class="comment">//Prints "6"</span></span><br></pre></td></tr></table></figure>
+<p>​    使用”..&lt;”来确定一个范围是，最大值被忽略，如果使用”…”则可以保证包含这些值。</p>
+<h4 id="函数和闭包"><a href="#函数和闭包" class="headerlink" title="函数和闭包"></a>函数和闭包</h4><p>​    使用 func 关键字去声明一个函数，通过声明函数名和函数的参数来定义一个函数。使用 -&gt; 符号将函数参数的名称和种类与函数返回类型分开。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(person: String, day: String)</span></span> -&gt; <span class="type">String</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello <span class="subst">\(person)</span>, today is <span class="subst">\(day)</span>."</span></span><br><span class="line">&#125;</span><br><span class="line">greet(person: <span class="string">"Bob"</span>, day: <span class="string">"Tuesday"</span>)</span><br></pre></td></tr></table></figure>
+<p>实验：将参数 day 换成包括了午饭的问候内容。</p>
+<p>​    在默认情况下，函数使用他们变量名作为他们声明的一个标签。在变量名之前写一个声明标签，或者使用”_”表示无标签。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">greet</span><span class="params">(<span class="number">_</span> person: String, on day: String)</span></span> -&gt; <span class="type">String</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"Hello <span class="subst">\(person)</span>, today is <span class="subst">\(day)</span>."</span></span><br><span class="line">&#125;</span><br><span class="line">greet(<span class="string">"John"</span>, on: <span class="string">"Wednesday"</span>)</span><br></pre></td></tr></table></figure>
+<p>​    使用数组去建立一个组合起来的值，比如说为了从一个函数中返回多个值，数组的元素可以通过名字或者参数被引用。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">calculateStatistics</span><span class="params">(scores: [Int])</span></span> -&gt; (<span class="built_in">min</span>: <span class="type">Int</span>, <span class="built_in">max</span>: <span class="type">Int</span>, sum: <span class="type">Int</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">min</span> = score[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">var</span> <span class="built_in">max</span> = score[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> score <span class="keyword">in</span> scores&#123;</span><br><span class="line">        <span class="keyword">if</span> score &gt; <span class="built_in">max</span>&#123;</span><br><span class="line">            <span class="built_in">max</span> = score</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> score &lt; <span class="built_in">min</span>&#123;</span><br><span class="line">            <span class="built_in">min</span> = score</span><br><span class="line">        &#125;</span><br><span class="line">        sum += score</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">min</span>, <span class="built_in">max</span>, sum)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> statistics = calculateStatistics(scores: [<span class="number">5</span>, <span class="number">3</span>, <span class="number">100</span>, <span class="number">3</span>, <span class="number">9</span>])</span><br><span class="line"><span class="built_in">print</span>(statistics.sum)</span><br><span class="line"><span class="comment">//Prints "120"</span></span><br><span class="line"><span class="built_in">print</span>(statistics.<span class="number">2</span>)</span><br><span class="line"><span class="comment">//Prints "120"</span></span><br></pre></td></tr></table></figure>
+<p>​    函数可以互相包含，被包含的函数可以使用在外部函数中定义的变量。你可以使用被包含的函数去简化那些长的或者复杂的代码。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">returnFifteen</span><span class="params">()</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="number">10</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">        y += <span class="number">5</span></span><br><span class="line">    &#125;</span><br><span class="line">    add()</span><br><span class="line">    <span class="keyword">return</span> y</span><br><span class="line">&#125;</span><br><span class="line">returnFifteen()</span><br></pre></td></tr></table></figure>
+<p>​    函数是第一等级的种类。这就意味着函数可以使用另一个函数作为它的返回值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">makeIncremeter</span><span class="params">()</span></span> -&gt; ((<span class="type">Int</span>) -&gt; <span class="type">Int</span>)&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">addOne</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Int</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> + number</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> addOne</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> increment = makeIncrementer()</span><br><span class="line">increment(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<p>​    函数可以使用另外一个函数来作为它的声明。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hasAnyMatches</span><span class="params">(list: [Int], condition: <span class="params">(Int)</span></span></span> -&gt; <span class="type">Bool</span>) -&gt; <span class="type">Bool</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> list&#123;</span><br><span class="line">        <span class="keyword">if</span> condition(item) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">lessThanTen</span><span class="params">(number: Int)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> number &lt; <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">20</span>, <span class="number">19</span>, <span class="number">7</span>, <span class="number">12</span>]</span><br><span class="line">hasAnyMatches(list: numbers, condition: lessthanTen)</span><br></pre></td></tr></table></figure>
+<p>​    函数经常作为闭包的一种特殊模式：代码块可以在之后被声明。在闭包中的代码可以调用在包被建立范围内的变量或者函数，即使闭包在程序执行的时候，不在范围内 – 你可以在相包含的函数中看到相关的例子。你可以利用 {} 符号去将闭包的代码限制起来，从而实现一个没有名字的闭包。在闭包的代码中，利用关键词 in 去分割变量声明和最后的返回部分。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numbers.<span class="built_in">map</span>(&#123; (number: <span class="type">Int</span>) -&gt; <span class="type">Int</span> <span class="keyword">in</span></span><br><span class="line">	<span class="keyword">let</span> result = <span class="number">3</span> * number</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>实验：重新写这个闭包，使其对于所有的奇数都返回0</p>
+<p>​    你有很多种选择去更加简洁地实现你的闭包。当你的闭包的返回值的类型已经知道的时候，你可以忽略掉返回值的类型、变量的类型或者都忽略掉。简单声明的闭包隐性地返回他们声明的类型的值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mappedNumbers = numbers.<span class="built_in">map</span>(&#123;number <span class="keyword">in</span> <span class="number">3</span> * number&#125;)</span><br><span class="line"><span class="built_in">print</span>(mappedNumbers)</span><br><span class="line"><span class="comment">//Prints "[60, 57, 21, 36]"</span></span><br></pre></td></tr></table></figure>
+<p>​    你可以利用数字去引用变量而不是通过变量名，这个方法在小的闭包中十分好用。一个闭包作为对一个函数的最后一个变量传递的话可以在圆括号之后写。当闭包是函数唯一的变量声明的话，你可以忽略整个圆括号。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> sortedNumbers = numbers.sorted&#123; $<span class="number">0</span> &gt; $<span class="number">1</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(sortedNumbers)</span><br><span class="line"><span class="comment">//Prints "[20, 19, 12, 7]"</span></span><br></pre></td></tr></table></figure>
+<p>注：我对这块也懵，所以提供一个网址大家可以参考一下。<a href="http://www.hangge.com/blog/cache/detail_809.html" target="_blank" rel="noopener">http://www.hangge.com/blog/cache/detail_809.html</a></p>
+<h4 id="对象和类"><a href="#对象和类" class="headerlink" title="对象和类"></a>对象和类</h4><h4 id="枚举和结构"><a href="#枚举和结构" class="headerlink" title="枚举和结构"></a>枚举和结构</h4><h4 id="协议和扩展"><a href="#协议和扩展" class="headerlink" title="协议和扩展"></a>协议和扩展</h4><h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><h2 id="Swift-–-基础语法"><a href="#Swift-–-基础语法" class="headerlink" title="Swift – 基础语法"></a>Swift – 基础语法</h2><h2 id="Swift-–-语言附注"><a href="#Swift-–-语言附注" class="headerlink" title="Swift – 语言附注"></a>Swift – 语言附注</h2><h2 id="历史版本及相关文献"><a href="#历史版本及相关文献" class="headerlink" title="历史版本及相关文献"></a>历史版本及相关文献</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Programming-Language/" rel="tag"># Programming Language</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/CSAPP-Lab2/" rel="next" title="CSAPP Lab2">
+                <i class="fa fa-chevron-left"></i> CSAPP Lab2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Problem A. Oversized Pancake Flipper/" rel="prev" title="Google 2017 Qualifacation Problem A">
+                Google 2017 Qualifacation Problem A <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDU0OC8xNzA3NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zinker</p>
+              <p class="site-description motion-element" itemprop="description">Zinker 的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zinker1999" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="郭子阳的编程小站" target="_blank">郭子阳的编程小站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://code.google.com/codejam/past-contests" title="Google jam" target="_blank">Google jam</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/" title="洛谷" target="_blank">洛谷</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://acm.hit.edu.cn" title="哈工大ACM网站" target="_blank">哈工大ACM网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://swift.org/" title="Swift文档" target="_blank">Swift文档</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Swift编程语言-–-Swift4-2"><span class="nav-number">1.</span> <span class="nav-text">Swift编程语言 – Swift4.2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#欢迎来到Swift"><span class="nav-number">1.1.</span> <span class="nav-text">欢迎来到Swift</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于Swift"><span class="nav-number">1.1.1.</span> <span class="nav-text">关于Swift</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#版本兼容"><span class="nav-number">1.1.2.</span> <span class="nav-text">版本兼容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Swift概览"><span class="nav-number">1.1.3.</span> <span class="nav-text">Swift概览</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单数值"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">简单数值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#控制流"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">控制流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和闭包"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">函数和闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象和类"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">对象和类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#枚举和结构"><span class="nav-number">1.1.3.5.</span> <span class="nav-text">枚举和结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协议和扩展"><span class="nav-number">1.1.3.6.</span> <span class="nav-text">协议和扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误处理"><span class="nav-number">1.1.3.7.</span> <span class="nav-text">错误处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#泛型"><span class="nav-number">1.1.3.8.</span> <span class="nav-text">泛型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-–-基础语法"><span class="nav-number">1.2.</span> <span class="nav-text">Swift – 基础语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-–-语言附注"><span class="nav-number">1.3.</span> <span class="nav-text">Swift – 语言附注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#历史版本及相关文献"><span class="nav-number">1.4.</span> <span class="nav-text">历史版本及相关文献</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zinker</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">24.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/tsumiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>

